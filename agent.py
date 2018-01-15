@@ -182,7 +182,6 @@ class LearningAgent(Agent):
         reward = self.env.act(self, action) # Receive a reward
         self.learn(state, action, reward)   # Q-learn
 
-
         return
         
 
@@ -219,7 +218,7 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay = 0.0001, log_metrics = True, display = False,  optimized = True)
+    sim = Simulator(env, update_delay = 0.0001, log_metrics = True, display = True,  optimized = True)
     
     ##############
     # Run the simulator
@@ -234,3 +233,6 @@ def run():
 
 if __name__ == '__main__':
     run()
+plot_trials('sim_improved-learning.csv')
+
+
