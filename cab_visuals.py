@@ -5,7 +5,7 @@ import warnings, os, ast
 from IPython import get_ipython
 
 warnings.filterwarnings("ignore", category = UserWarning, module = "matplotlib")
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 def calculate_safety(data):
@@ -52,9 +52,12 @@ def calculate_reliability(data):
 
 
 def plot_trials(csv):
-	""" Plots the data from logged metrics during a simulation."""
+	"""
+        Plots the data from logged metrics during a simulation. You will have
+        to update the data variable to coincide with the path of your logs
+        """
 
-	data = pd.read_csv(os.path.join("logs", csv))
+	data = pd.read_csv(os.path.join("/Applications/logs", csv))
 
 	if len(data) < 10:
 		print "Not enough data collected to create a visualization."
@@ -87,7 +90,7 @@ def plot_trials(csv):
 
 
 	
-	""" Average step reward plot """
+	#""" Average step reward plot """
 	
 	
 	ax = plt.subplot2grid((6,6), (0,3), colspan=3, rowspan=2)
@@ -104,7 +107,7 @@ def plot_trials(csv):
 
 
 	
-	""" Parameters Plot """
+	#""" Parameters Plot """
 
 	ax = plt.subplot2grid((6,6), (2,3), colspan=3, rowspan=2)
 
@@ -124,7 +127,7 @@ def plot_trials(csv):
 		ax.axis('off')
 		ax.text(0.52, 0.30, "Simulation completed\nwith learning disabled.", fontsize=24, ha='center', style='italic')	
 
-	"""Bad Actions Plot"""
+#"""Bad Actions Plot"""
 	
 	actions = training_data[['trial','good', 'minor','major','minor_acc','major_acc']].dropna()
 	maximum = (1 - actions['good']).values.max()
@@ -149,7 +152,7 @@ def plot_trials(csv):
 
 
 	
-	""" Rolling Success-Rate plot"""
+#""" Rolling Success-Rate plot"""
 	
 	
 	ax = plt.subplot2grid((6,6), (4,0), colspan=4, rowspan=2)
@@ -169,7 +172,7 @@ def plot_trials(csv):
 	ax.plot(trial, rate, label="Reliability Rate", color='blue')
 
 
-        """Test results"""
+#"""Test results"""
 
 	ax = plt.subplot2grid((6,6), (4,4), colspan=2, rowspan=2)
 	ax.axis('off')
@@ -190,3 +193,5 @@ def plot_trials(csv):
 
 	plt.tight_layout()
 	plt.show()
+
+
