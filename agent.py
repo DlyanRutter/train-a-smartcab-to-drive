@@ -2,6 +2,7 @@ import random, math, json
 from cab_environment import Agent, Environment
 from cab_route_planner import RoutePlanner
 from cab_simulator import Simulator
+from cab_visuals import plot_trials
 
 Q = dict()
 
